@@ -1,0 +1,1 @@
+function NavbarX(a){a.classList.toggle("change")}
