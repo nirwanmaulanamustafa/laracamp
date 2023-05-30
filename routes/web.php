@@ -13,42 +13,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Router Index
 Route::get('/', function () {
     return view('index',[
-        "title"=>"Landing Page",
+        'title' => 'Home'
     ]);
-})->name('/');
+    })->name('/');
 
-// Route Login
-Route::get('/BeLogin', function () {
-    return view('Login',[
-        "title"=>"Login",
-    ]);
-})->name('BeLogin');
-
-// Route Login
-Route::get('/navbar-library', function () {
-    return view('navbar-library',[
-        "title"=>"navbar-library",
-    ]);
-})->name('navbar-library');
-
-// Route Checkout
 Route::get('/Checkout', function () {
     return view('Checkout',[
-        "title"=>"Checkout",
+        'title' => 'Checkout'
     ]);
 })->name('Checkout');
 
-// Route Success_Checkout
+
+Route::get('/BeLogin', function () {
+    return view('login',[
+        'title' => 'Login'
+    ]);
+})->name('BeLogin');
+
 Route::get('/success-checkout', function () {
-    return view('Success_checkout',[
-        "title"=>"Success_checkout",
+    return view('success_checkout',[
+        'title' => 'Success'
     ]);
 })->name('success-checkout');
 
-// Bug Sentry
-Route::get('/debug-sentry', function () {
-    throw new Exception('My first Sentry ersror!');
-});
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
