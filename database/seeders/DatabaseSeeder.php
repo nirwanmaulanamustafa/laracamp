@@ -16,7 +16,9 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
-            CampTableSeeder::class
+            CampTableSeeder::class,
+            CampBenefitSeeder::class,
+            AdminUserSeeder::class
         ]);
     }
 }
