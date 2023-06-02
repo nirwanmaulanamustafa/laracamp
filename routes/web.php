@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\InvitationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +27,6 @@ Route::get('/Checkout', function () {
     ]);
 })->name('Checkout');
 
-
 Route::get('/BeLogin', function () {
     return view('login',[
         'title' => 'Login'
@@ -38,8 +39,18 @@ Route::get('/success-checkout', function () {
     ]);
 })->name('success-checkout');
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+// Sosialite Google
+Route::get('sign-in-google',[UserController::class, 'google'])->name('user.login.google');
+Route::get('auth/google/callback',[UserController::class,'HandleProviderCallback'])->name('user.google.callback');
+
+
+// Invitation
+Route::get('/Invitation', [InvitationController::class,'index']);
+Route::get('/Invitation/{nama}', [InvitationController::class,'TurutMengundang']);
 
 require __DIR__.'/auth.php';
